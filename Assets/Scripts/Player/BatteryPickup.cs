@@ -1,0 +1,15 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BatteryPickup : MonoBehaviour
+{
+    [SerializeField] float lightAngle = 70f;
+    [SerializeField] float lightIntensity = 5f;
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Player"){
+            other.GetComponentInChildren<FlashLightSystem>().RestoreLight(lightAngle, lightIntensity);
+            Destroy(gameObject);
+        }
+    }
+}
